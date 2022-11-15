@@ -13,19 +13,26 @@
  */
 
 import _ from "underscore";
+import React, { useState } from "react";
+import "./EightBall.css"
 
 function EightBall({answers}){
   const [color, setColor] = useState("black")
   const [msg, setMsg] = useState("Think of a Question")
 
   function handleClick(){
-    const {color, msg} = _.sample(answers, [1])
-    setColor(color);
-    setMsg(msg)
+    console.log("I was clicked")
+    const answer = _.sample(answers, [1])
+    setColor(answer[0].color);
+    setMsg(answer[0].msg)
   }
 
   return (
-    <div></div>
+    <div className="EightBall"
+      onClick={handleClick}
+      style={{"backgroundColor": color}}>
+     <p className="msg">{msg}</p>
+    </div>
   )
 }
 
